@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Picker</string>
+    <string name="no_sdCard">当前存储卡不可用！</string>
+    <string name="loading">正在加载...</string>
+    <string name="no_image">未扫描到任何图片</string>
+    <string name="error">error!!!!!!!!!!</string>
 </resources>

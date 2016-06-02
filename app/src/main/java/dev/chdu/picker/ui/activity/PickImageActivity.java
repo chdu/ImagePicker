@@ -9,6 +9,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -24,9 +27,10 @@ import dev.chdu.picker.R;
 import dev.chdu.picker.adapter.PickImageAdaptor;
 import dev.chdu.picker.bean.FolderBean;
 
-public class PickImageActivity extends BaseActivity {
+public class PickImageActivity extends AppCompatActivity {
 
     private static final int DATA_LOADED = 0x110;
+    private CoordinatorLayout mCoordinatorLayout;
     private RecyclerView mRecyclerView;
     private ProgressDialog mProgressDialog;
     private List<FolderBean> mFolderBeans = new ArrayList<>();
@@ -51,10 +55,6 @@ public class PickImageActivity extends BaseActivity {
         }
         mImages = Arrays.asList(currentDir.list());
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
-        if (mRecyclerView == null) {
-            showSnakebar(R.string.error);
-            return;
-        }
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new PickImageAdaptor(this, mImages, currentDir.getAbsolutePath());
         mRecyclerView.setAdapter(mAdapter);
@@ -63,15 +63,14 @@ public class PickImageActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        layoutResID = R.layout.activity_pick_image;
-
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_pick_image);
         initView();
         initData();
     }
 
     private void initView() {
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
     }
 
@@ -132,4 +131,7 @@ public class PickImageActivity extends BaseActivity {
         }.start();
     }
 
+    private void showSnakebar(int resId) {
+        Snackbar.make(mCoordinatorLayout, resId, Snackbar.LENGTH_SHORT).show();
+    }
 }

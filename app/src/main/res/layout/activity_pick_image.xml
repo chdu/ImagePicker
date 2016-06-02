@@ -3,14 +3,7 @@
     android:id="@+id/coordinator_layout"
     style="@style/baseLayoutParam">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        style="@style/baseLayoutParam" />
+        style="@style/recyclerViewStyle" />
 </android.support.design.widget.CoordinatorLayout>
